@@ -1,0 +1,130 @@
+#!/bin/bash
+# Copyright © 2020 chris1111 All Right Reserved
+# Vars
+cp -rp ./AppIcon.icns /Private/tmp/AppIcon.icns
+Sleep 1
+apptitle="Download-BigSur"
+version="1.0"
+# Set Icon directory and file 
+iconfile="/Private/tmp/AppIcon.icns"
+echo " "
+current_date_time="`date "+%Y-%m-%d %H:%M:%S"`";
+echo Starting $current_date_time;
+# Start
+osascript -e 'do shell script "afplay './Funk.aiff' &> /dev/null &"'
+Sleep 1
+echo "DETAILS:SHOW"
+Sleep 1
+echo "DETAILS:HIDE"
+
+osascript <<EOD
+  tell application "Download-BigSur"
+      activate
+  end tell
+EOD
+
+if [ -f "/Private/tmp/InstallAssistant.pkg" ]; then
+        echo "InstallAssistant remove before starting"
+	osascript -e 'do shell script "rm -rf /Private/tmp/InstallAssistant.pkg" with administrator privileges'
+fi
+
+response=$(osascript -e 'tell app "System Events" to display dialog "Download Install macOS Big Sur.app
+Download macOS 11 InstallAssistant.pkg (12GB) 
+This will take a while. . .\n\nCancel for Quit" buttons {"Cancel","Download"} default button 2 with title "'"$apptitle"' '"$version"'" with icon POSIX file "'"$iconfile"'"  ')
+
+action=$(echo $response | cut -d ':' -f2)
+
+
+# Exit if Canceled
+if [ "$action" == "Cancel" ] ; then
+  osascript -e 'display notification "Program close" with title "'"$apptitle"'" subtitle "User Cancel"'
+echo "User Cancel"
+osascript -e 'do shell script "afplay './Hero.aiff' &> /dev/null &"'
+  exit 0
+fi
+
+
+osascript <<EOD
+  tell application "Download-BigSur"
+      activate
+  end tell
+EOD
+
+
+echo "Download macOS 11 InstallAssistant.pkg (12GB). This will take a while. . ."
+echo "---------------------"
+echo "PROGRESS:0"
+echo "Downloading..."
+sleep 2
+echo "PROGRESS:10"
+sleep 1
+echo "PROGRESS:20"
+sleep 1
+echo "PROGRESS:30"
+sleep 1
+echo "PROGRESS:40"
+sleep 1
+osascript -e 'do shell script "afplay './multiway_invitation.caf' &> /dev/null &"'
+sleep 1
+echo " "
+echo "Downloading Big Sur 11 please wait..."
+curl -L --progress-bar http://swcdn.apple.com/content/downloads/00/55/001-86606-A_9SF1TL01U7/5duug9lar1gypwunjfl96dza0upa854qgg/InstallAssistant.pkg -o /Private/tmp/InstallAssistant.pkg
+echo "PROGRESS:50"
+sleep 1
+echo "PROGRESS:60"
+sleep 1
+echo "PROGRESS:70"
+sleep 1
+echo "PROGRESS:80"
+Sleep 1
+echo " "
+echo "Download finish!"
+echo "DETAILS:SHOW"
+Sleep 2
+echo "DETAILS:HIDE"
+Sleep 1
+osascript <<EOD
+  tell application "Download-BigSur"
+      activate
+  end tell
+EOD
+
+echo "Installation ➤ Install macOS Big Sur.ap on Applications"
+response=$(osascript -e 'tell app "System Events" to display dialog "Install macOS Big Sur.app on Applications\n\nCancel for Quit" buttons {"Cancel","Install"} default button 2 with title "'"$apptitle"' '"$version"'" with icon POSIX file "'"$iconfile"'"  ')
+
+action=$(echo $response | cut -d ':' -f2)
+
+
+# Exit if Canceled
+if [ "$action" == "Cancel" ] ; then
+  osascript -e 'display notification "Programme close" with title "'"$apptitle"'" subtitle "Canceller par utilisateur."'
+echo "User Cancel"
+osascript -e 'do shell script "afplay './Hero.aiff' &> /dev/null &"'
+  exit 0
+fi
+
+# Install macOS Applications
+osascript -e 'do shell script "sudo installer -pkg '/Private/tmp/InstallAssistant.pkg' -target /" with administrator privileges'
+Sleep 1
+echo "PROGRESS:90"
+echo "PROGRESS:100"
+echo "DETAILS:SHOW"
+echo " "
+osascript <<EOD
+  tell application "Download-BigSur"
+      activate
+  end tell
+EOD
+echo " "
+osascript -e 'do shell script "afplay './Funk.aiff' &> /dev/null &"'
+current_date_time="`date "+%Y-%m-%d %H:%M:%S"`";
+echo Installation Done! $current_date_time;
+# Clean Up
+rm -rf /Private/tmp/AppIcon.icns
+osascript -e 'do shell script "rm -R /Private/tmp/InstallAssistant.pkg" with administrator privileges'
+
+exit 0
+
+
+
+
