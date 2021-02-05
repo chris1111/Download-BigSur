@@ -29,7 +29,7 @@ if [ -f "/Private/tmp/InstallAssistant.pkg" ]; then
 fi
 
 response=$(osascript -e 'tell app "System Events" to display dialog "Download Install macOS Big Sur.app
-Download macOS 11 InstallAssistant.pkg (12GB) 
+Download macOS 11.2 (20D64) InstallAssistant.pkg (12GB)
 This will take a while. . .\n\nCancel for Quit" buttons {"Cancel","Download"} default button 2 with title "'"$apptitle"' '"$version"'" with icon POSIX file "'"$iconfile"'"  ')
 
 action=$(echo $response | cut -d ':' -f2)
@@ -51,7 +51,7 @@ osascript <<EOD
 EOD
 
 
-echo "Download macOS 11 InstallAssistant.pkg (12GB). This will take a while. . ."
+echo "Download macOS 11.2 (20D64) InstallAssistant.pkg (12GB). This will take a while. . ."
 echo "---------------------"
 echo "PROGRESS:0"
 echo "Downloading..."
@@ -68,7 +68,7 @@ osascript -e 'do shell script "afplay './multiway_invitation.caf' &> /dev/null &
 sleep 1
 echo " "
 echo "Downloading Big Sur 11 please wait..."
-curl -L --progress-bar http://swcdn.apple.com/content/downloads/00/55/001-86606-A_9SF1TL01U7/5duug9lar1gypwunjfl96dza0upa854qgg/InstallAssistant.pkg -o /Private/tmp/InstallAssistant.pkg
+curl -L --progress-bar http://swcdn.apple.com/content/downloads/04/34/071-00838-A_16DMRFYPPS/g072hb2wh066rj040ekzry97wx2hggfuse/InstallAssistant.pkg -o /Private/tmp/InstallAssistant.pkg
 echo "PROGRESS:50"
 sleep 1
 echo "PROGRESS:60"
