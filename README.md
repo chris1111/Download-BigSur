@@ -2,6 +2,9 @@
 #### Simple macOS Appplication for downloading macOS Big Sur 11
 ### Gatekeeper must be disable to using this.
 
+Download V3 ➤ [Download-BigSur.zip](https://github.com/chris1111/Download-BigSur/releases/tag/V4)
+- macOS Big Sur Version 11.4 (20F71)
+
 Download V3 ➤ [Download-BigSur.zip](https://github.com/chris1111/Download-BigSur/releases/tag/V3)
 - macOS Big Sur Version 11.2.3 (20D91)
 
